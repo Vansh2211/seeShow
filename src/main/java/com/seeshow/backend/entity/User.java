@@ -14,11 +14,6 @@ import java.util.*;
 @Builder
 public class User extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(nullable = false, unique = true, length = 50)
     private String firstName;
 
