@@ -8,11 +8,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthResponse {
+public class AuthenticationResponse {
 
     private String accessToken;
 
     private String refreshToken;
 
-    private String tokenType;
+    @Builder.Default
+    private String tokenType = "Bearer";
 }
