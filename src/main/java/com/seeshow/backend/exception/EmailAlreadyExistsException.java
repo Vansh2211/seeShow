@@ -1,4 +1,10 @@
 package com.seeshow.backend.exception;
 
-public class EmailAlreadyExistsException {
+import jakarta.validation.constraints.Email;
+
+public class EmailAlreadyExistsException extends RuntimeException {
+
+    public EmailAlreadyExistsException(String message) {
+        super(message);
+    }
 }
