@@ -14,19 +14,19 @@ import java.util.*;
 @Builder
 public class User extends BaseEntity {
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(name="first_name", unique = true, length = 50)
     private String firstName;
 
     @Column(length = 50)
     private String lastName;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(unique = true, length = 15)
+    @Column(name = "phone_number",unique = true, length = 15)
     private String phoneNumber;
 
     @Builder.Default
