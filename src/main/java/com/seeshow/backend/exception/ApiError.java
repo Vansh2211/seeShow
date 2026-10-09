@@ -3,6 +3,9 @@ package com.seeshow.backend.exception;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import lombok.*;
+import java.util.*;
+
 
 @Getter
 @Setter
@@ -20,4 +23,6 @@ public class ApiError {
     private String message;
     
     private String path;
+
+    private Map<String, String> validationErrors;
 }
