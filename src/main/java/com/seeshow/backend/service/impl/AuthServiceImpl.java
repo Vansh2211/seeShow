@@ -1,6 +1,6 @@
 package com.seeshow.backend.service.impl;
 
-    import com.seeshow.backend.dto.auth.AuthenticationResponse;
+import com.seeshow.backend.dto.auth.AuthenticationResponse;
 import com.seeshow.backend.dto.auth.LoginRequest;
 import com.seeshow.backend.dto.auth.RegisterRequest;
 import com.seeshow.backend.entity.Role;
@@ -15,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.seeshow.backend.security.jwt.JwtService;
 
 import java.util.Set;
 
@@ -27,16 +28,20 @@ public class AuthServiceImpl implements AuthService {
 
     private final AuthenticationManager authenticationManager;
 
+    private final JwtService jwtService;
+
     public AuthServiceImpl(
             UserRepository userRepository,
             RoleRepository roleRepository,
             PasswordEncoder passwordEncoder,
-            AuthenticationManager authenticationManager
+            AuthenticationManager authenticationManager,
+            JwtService jwtService
     ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -87,6 +92,11 @@ public class AuthServiceImpl implements AuthService {
                         request.getPassword()
                 )
         );
+
+        String email = authentication.getName();
+
+        String accessToken = jwtService.generateAccessToken(email);
+
         return AuthenticationResponse.builder().build();
     }
 }
