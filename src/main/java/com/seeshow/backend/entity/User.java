@@ -14,7 +14,7 @@ import java.util.*;
 @Builder
 public class User extends BaseEntity {
 
-    @Column(name="first_name", unique = true, length = 50)
+    @Column(name="first_name", nullable = false)
     private String firstName;
 
     @Column(length = 50)

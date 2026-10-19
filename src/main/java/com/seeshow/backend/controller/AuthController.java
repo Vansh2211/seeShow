@@ -2,6 +2,7 @@ package com.seeshow.backend.controller;
 
 import com.seeshow.backend.dto.auth.AuthenticationResponse;
 import com.seeshow.backend.dto.auth.RegisterRequest;
+import com.seeshow.backend.dto.auth.LoginRequest;
 import com.seeshow.backend.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,12 @@ public class AuthController {
         AuthenticationResponse response = authService.register(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponse> login(
+            @Valid @RequestBody LoginRequest request) {
+        return ResponseEntity.ok(authService.login(request));
     }
     
 }
